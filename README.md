@@ -75,7 +75,7 @@ The **SPI slave sequences** return a randomized MISO byte for each transfer. The
 - **Scoreboard:**
   - On an APB write to `DR`, `PWDATA` must equal the byte the SPI monitor captured on **MOSI**.
   - On an APB read of `DR`, `PRDATA` must equal the byte captured on **MISO**.
-- **APB protocol assertions** in `apb_intf`: signal stability, `PENABLE` behaviour, `PSEL` → `PREADY`, reserved address, `PENABLE` deassert, valid write/read data transfer, and `PREADY` behaviour.
+- **APB protocol assertions** in the provided [`apb_intf`](provided/apb_intf.sv): signal stability, `PENABLE` behaviour, `PSEL` → `PREADY`, reserved address, `PENABLE` deassert, valid write/read data transfer, and `PREADY` behaviour.
 
 ### Functional coverage
 | Covergroup | Coverpoints |
@@ -130,20 +130,21 @@ APB-SPI-UVM-Verification/
 │                 virtual_sequencer.sv, *_virtual_sequence.sv
 ├── apb_agent/    apb_agent_pkg.sv, apb_xtn.sv, apb_agt_config.sv, apb_sequencer.sv,
 │                 apb_driver.sv, apb_monitor.sv, apb_seqs.sv, apb_agent.sv, apb_agt_top.sv
+├── provided/     apb_intf.sv, spi_intf.sv  (Maven Silicon, original headers kept)
 ├── spi_agent/    spi_agent_pkg.sv, spi_xtn.sv, spi_agt_config.sv, spi_sequencer.sv,
 │                 spi_driver.sv, spi_monitor.sv, spi_seqs.sv, spi_agent.sv, spi_agt_top.sv
 └── docs/         architecture diagram, waveform, coverage report
 ```
 
-> **DUT and interfaces:** the design under test (the APB-SPI core RTL) and the `apb_intf` / `spi_intf` interface files were provided as part of the Maven Silicon training project. They are not included in this repository.
+> **Provided files:** the `apb_intf` and `spi_intf` interfaces in [`provided/`](provided/) were supplied by Maven Silicon as part of the training project. They are included with their original headers. The design under test (the APB-SPI core RTL) was also provided and is not included here.
 
 ## How to Run (Synopsys VCS)
 
 ```bash
-# compile (add the paths to the DUT RTL and interface files)
+# compile (add the path to the DUT RTL)
 vcs -full64 -sverilog -ntb_opts uvm-1.2 -debug_access+all -kdb -lca -cm line+cond+tgl+fsm \
     +incdir+apb_agent +incdir+spi_agent +incdir+env +incdir+test \
-    <dut_and_interface_files> apb_agent/apb_agent_pkg.sv spi_agent/spi_agent_pkg.sv \
+    <dut_rtl_files> provided/apb_intf.sv provided/spi_intf.sv apb_agent/apb_agent_pkg.sv spi_agent/spi_agent_pkg.sv \
     env/tb_pkg.sv test/test_pkg.sv top/top.sv +define+VCS
 
 # run a test
