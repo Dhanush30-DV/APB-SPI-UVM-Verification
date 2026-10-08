@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 640" font-family="DejaVu Sans, Arial, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="640" fill="#ffffff"/>
+  <text x="590" y="32" text-anchor="middle" font-size="21" font-weight="bold" fill="#111">UVM Testbench — APB Interface with Master SPI Core</text>
+
+  <!-- test -->
+  <rect x="20" y="50" width="1140" height="570" rx="10" fill="#fafafa" stroke="#555" stroke-width="2"/>
+  <text x="36" y="76" font-size="15" font-weight="bold" fill="#333">top → test: apb_spi_base_test → spi_write_test · spi_read_test · spi_write_read_test</text>
+
+  <!-- env -->
+  <rect x="40" y="90" width="1100" height="350" rx="10" fill="#f2f6fb" stroke="#1f4e9e" stroke-width="2"/>
+  <text x="56" y="114" font-size="15" font-weight="bold" fill="#1f4e9e">environment (env)</text>
+
+  <!-- virtual sequencer -->
+  <rect x="440" y="104" width="300" height="52" rx="6" fill="#fff4e5" stroke="#c76b00" stroke-width="2"/>
+  <text x="590" y="126" text-anchor="middle" font-size="14" font-weight="bold" fill="#c76b00">virtual_sequencer (v_seqer)</text>
+  <text x="590" y="145" text-anchor="middle" font-size="12" fill="#333">write / read / write_read virtual sequences</text>
+
+  <!-- APB agent -->
+  <rect x="60" y="180" width="380" height="250" rx="8" fill="#e8f0fc" stroke="#1f4e9e" stroke-width="2"/>
+  <text x="250" y="204" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f4e9e">apb_agt_top → apb_agent (active)</text>
+  <rect x="80" y="220" width="160" height="44" rx="5" fill="#fff" stroke="#1f4e9e"/>
+  <text x="160" y="240" text-anchor="middle" font-size="13">apb_sequencer</text>
+  <text x="160" y="256" text-anchor="middle" font-size="11" fill="#555">8 CPOL/CPHA/LSB seqs</text>
+  <rect x="80" y="290" width="160" height="44" rx="5" fill="#fff" stroke="#1f4e9e"/>
+  <text x="160" y="317" text-anchor="middle" font-size="13">apb_driver</text>
+  <rect x="260" y="290" width="160" height="44" rx="5" fill="#fff" stroke="#1f4e9e"/>
+  <text x="340" y="317" text-anchor="middle" font-size="13">apb_monitor</text>
+  <path d="M160 264 V288" stroke="#333" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+
+  <!-- SPI agent -->
+  <rect x="740" y="180" width="380" height="250" rx="8" fill="#f6e9f7" stroke="#8e24aa" stroke-width="2"/>
+  <text x="930" y="204" text-anchor="middle" font-size="15" font-weight="bold" fill="#8e24aa">spi_agt_top → spi_agent (active)</text>
+  <rect x="940" y="220" width="160" height="44" rx="5" fill="#fff" stroke="#8e24aa"/>
+  <text x="1020" y="240" text-anchor="middle" font-size="13">spi_sequencer</text>
+  <text x="1020" y="256" text-anchor="middle" font-size="11" fill="#555">8 MISO data seqs</text>
+  <rect x="940" y="290" width="160" height="44" rx="5" fill="#fff" stroke="#8e24aa"/>
+  <text x="1020" y="317" text-anchor="middle" font-size="13">spi_driver (slave)</text>
+  <rect x="760" y="290" width="160" height="44" rx="5" fill="#fff" stroke="#8e24aa"/>
+  <text x="840" y="317" text-anchor="middle" font-size="13">spi_monitor</text>
+  <path d="M1020 264 V288" stroke="#333" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+
+  <!-- vseqr to sequencers -->
+  <path d="M480 156 V170 H160 V218" stroke="#c76b00" stroke-width="1.6" fill="none" stroke-dasharray="5 3" marker-end="url(#a)"/>
+  <path d="M700 156 V170 H1020 V218" stroke="#c76b00" stroke-width="1.6" fill="none" stroke-dasharray="5 3" marker-end="url(#a)"/>
+
+  <!-- scoreboard -->
+  <rect x="470" y="300" width="240" height="120" rx="8" fill="#eaf7ec" stroke="#2e7d32" stroke-width="2"/>
+  <text x="590" y="324" text-anchor="middle" font-size="15" font-weight="bold" fill="#2e7d32">scoreboard</text>
+  <text x="590" y="346" text-anchor="middle" font-size="12">apb_fifo[] · spi_fifo[]</text>
+  <text x="590" y="366" text-anchor="middle" font-size="12">PWDATA ↔ MOSI · PRDATA ↔ MISO</text>
+  <text x="590" y="386" text-anchor="middle" font-size="12">apb_covergroup · spi_covergroup</text>
+  <path d="M420 312 H468" stroke="#2e7d32" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
+  <path d="M760 312 H712" stroke="#2e7d32" stroke-width="1.8" fill="none" marker-end="url(#a)"/>
+  <text x="444" y="304" text-anchor="middle" font-size="10" fill="#2e7d32">analysis</text>
+  <text x="736" y="304" text-anchor="middle" font-size="10" fill="#2e7d32">analysis</text>
+
+  <!-- interfaces and DUT -->
+  <rect x="80" y="450" width="340" height="50" rx="6" fill="#fff" stroke="#1f4e9e" stroke-width="2"/>
+  <text x="250" y="472" text-anchor="middle" font-size="13" font-weight="bold">apb_intf</text>
+  <text x="250" y="490" text-anchor="middle" font-size="11" fill="#555">driver / monitor clocking blocks · APB SVA</text>
+  <rect x="760" y="450" width="340" height="50" rx="6" fill="#fff" stroke="#8e24aa" stroke-width="2"/>
+  <text x="930" y="472" text-anchor="middle" font-size="13" font-weight="bold">spi_intf</text>
+  <text x="930" y="490" text-anchor="middle" font-size="11" fill="#555">driver / monitor clocking blocks</text>
+  <path d="M160 334 V448" stroke="#333" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+  <path d="M340 448 V336" stroke="#333" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+  <path d="M1020 334 V448" stroke="#333" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+  <path d="M840 448 V336" stroke="#333" stroke-width="1.6" fill="none" marker-end="url(#a)"/>
+
+  <rect x="440" y="540" width="300" height="66" rx="8" fill="#ffecec" stroke="#b00020" stroke-width="2"/>
+  <text x="590" y="566" text-anchor="middle" font-size="15" font-weight="bold" fill="#b00020">DUT: spi_core</text>
+  <text x="590" y="586" text-anchor="middle" font-size="12">APB slave → SPI master</text>
+  <path d="M250 500 V573 H438" stroke="#1f4e9e" stroke-width="2" fill="none" marker-end="url(#a)"/>
+  <path d="M742 573 H930 V502" stroke="#8e24aa" stroke-width="2" fill="none" marker-end="url(#a)"/>
+  <text x="262" y="532" font-size="11" fill="#1f4e9e">APB: PSEL, PENABLE, PADDR, PWDATA, PRDATA…</text>
+  <text x="752" y="532" font-size="11" fill="#8e24aa">SPI: SS, SCLK, MOSI ⇄ MISO</text>
+</svg>

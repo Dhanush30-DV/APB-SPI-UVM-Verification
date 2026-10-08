@@ -1,0 +1,12 @@
+csrc/
+simv*
+*.daidir/
+ucli.key
+*.vpd
+*.fsdb
+*.vdb/
+urgReport/
+verdiLog/
+novas*
+*.log
+AN.DB/
