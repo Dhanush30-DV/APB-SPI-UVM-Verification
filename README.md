@@ -75,7 +75,7 @@ The **SPI slave sequences** return a randomized MISO byte for each transfer. The
 - **Scoreboard:**
   - On an APB write to `DR`, `PWDATA` must equal the byte the SPI monitor captured on **MOSI**.
   - On an APB read of `DR`, `PRDATA` must equal the byte captured on **MISO**.
-- **APB protocol assertions** in the provided [`apb_intf`](interface/apb_intf.sv): signal stability, `PENABLE` behaviour, `PSEL` → `PREADY`, reserved address, `PENABLE` deassert, valid write/read data transfer, and `PREADY` behaviour.
+- **APB protocol assertions** in [`apb_intf`](interface/apb_intf.sv): signal stability, `PENABLE` behaviour, `PSEL` → `PREADY`, reserved address, `PENABLE` deassert, valid write/read data transfer, and `PREADY` behaviour.
 
 ### Functional coverage
 | Covergroup | Coverpoints |
@@ -136,12 +136,12 @@ APB-SPI-UVM-Verification/
 └── docs/         architecture diagram, waveform, coverage report
 ```
 
-> **Provided files:** the `apb_intf` and `spi_intf` interfaces in [`interface/`](interface/) were supplied by Maven Silicon as part of the training project. They are included with their original headers. The design under test (the APB-SPI core RTL) was also provided and is not included here.
+> **Design under test:** the DUT is my own APB-to-SPI master core RTL from [APB-SPI-Master-RTL-Design](https://github.com/Dhanush30-DV/APB-SPI-Master-RTL-Design). The RTL, the `apb_intf` and `spi_intf` interfaces, and this UVM verification environment are my own work.
 
 ## How to Run (Synopsys VCS)
 
 ```bash
-# compile (add the path to the DUT RTL)
+# compile (add the DUT RTL files from APB-SPI-Master-RTL-Design/rtl)
 vcs -full64 -sverilog -ntb_opts uvm-1.2 -debug_access+all -kdb -lca -cm line+cond+tgl+fsm \
     +incdir+apb_agent +incdir+spi_agent +incdir+env +incdir+test \
     <dut_rtl_files> interface/apb_intf.sv interface/spi_intf.sv apb_agent/apb_agent_pkg.sv spi_agent/spi_agent_pkg.sv \
